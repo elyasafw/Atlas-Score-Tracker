@@ -1,0 +1,24 @@
+{
+    "name": "atlas-score-tracker",
+    "version": "1.0.0",
+    "description": "mongo db learning project",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/elyasafw/Atlas-Score-Tracker.git"
+    },
+    "keywords": [],
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/elyasafw/Atlas-Score-Tracker/issues"
+    },
+    "homepage": "https://github.com/elyasafw/Atlas-Score-Tracker#readme",
+    "dependencies": {
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1",
+        "mongodb": "^7.5.0"
+    }
+}
