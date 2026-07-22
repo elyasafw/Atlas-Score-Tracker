@@ -1,4 +1,4 @@
-import { createScore, TopGamePlayers } from "./dbService.js";
+import { createScore, TopGamePlayers, TopGlobalPlayers } from "./dbService.js";
 
 async function createNewScore(req, res) {
     const data = req.body;
@@ -16,4 +16,9 @@ async function tenTopGamePlayers(req, res) {
     return topPlayers;
 }
 
-export { createNewScore, tenTopGamePlayers };
+async function tenTopGlobalPlayers() {
+    const topPlayers = await TopGlobalPlayers();
+    return topPlayers;
+}
+
+export { createNewScore, tenTopGamePlayers, tenTopGlobalPlayers };
