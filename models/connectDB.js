@@ -1,10 +1,12 @@
-import env from "dotenv";
+import "dotenv/config";
 import { MongoClient } from "mongodb";
 
-env.config();
-
 const client = new MongoClient(process.env.MONGO_URI);
-await client.connect();
+try {
+    await client.connect();
+} catch (error) {
+    console.error(error);
+}
 
 const db = client.db(process.env.DB_NAME);
 
