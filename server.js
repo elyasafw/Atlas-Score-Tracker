@@ -9,5 +9,6 @@ app.use(express.json());
 
 app.use("/game", routers.gameRoute);
 app.use("/leaderboard", routers.leaderboardRoute);
+app.use("/player", routers.playersRoute);
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT} ...`));

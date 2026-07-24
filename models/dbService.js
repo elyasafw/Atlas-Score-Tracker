@@ -11,13 +11,25 @@ function TopGamePlayers(gameName) {
 }
 
 function TopGlobalPlayers() {
-    return collection.find().sort({ points: -1 }).limit(10).project({
-        _id: 0,
-        playerName: 1,
-        game: 1,
-        points: 1,
-        createdAt: 1,
-    }).toArray();
+    return collection
+        .find()
+        .sort({ points: -1 })
+        .limit(10)
+        .project({
+            _id: 0,
+            playerName: 1,
+            game: 1,
+            points: 1,
+            createdAt: 1,
+        })
+        .toArray();
 }
 
-export { createScore, TopGamePlayers, TopGlobalPlayers };
+function playerScores(name) {
+    return collection
+        .find({ playerName: name })
+        .sort({ createdAt: -1 })
+        .toArray();
+}
+
+export { createScore, playerScores, TopGamePlayers, TopGlobalPlayers };
