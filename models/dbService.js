@@ -32,4 +32,8 @@ function playerScores(name) {
         .toArray();
 }
 
-export { createScore, playerScores, TopGamePlayers, TopGlobalPlayers };
+function allScores() {
+    return collection.find().toArray();
+}
+
+export { createScore, playerScores, TopGamePlayers, TopGlobalPlayers, allScores };

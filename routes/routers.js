@@ -5,6 +5,7 @@ import {
     getPlayerScores,
     tenTopGamePlayers,
     tenTopGlobalPlayers,
+    getStats,
 } from "../models/controller.js";
 
 const leaderboardRoute = express.Router();
@@ -44,6 +45,15 @@ playersRoute.get("/:name", async (req, res) => {
         const playerScores = await getPlayerScores(req);
         console.log(playerScores)
         res.status(200).json({ success: true, data: playerScores });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error });
+    }
+});
+
+statsRoute.get("/", async (req, res) => {
+    try {
+        const stats = await getStats();
+        res.status(200).json({ success: true, data: stats });
     } catch (error) {
         res.status(400).json({ success: false, message: error });
     }

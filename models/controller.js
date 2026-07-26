@@ -3,6 +3,7 @@ import {
     playerScores,
     TopGamePlayers,
     TopGlobalPlayers,
+    allScores,
 } from "./dbService.js";
 
 async function createNewScore(req, res) {
@@ -46,9 +47,52 @@ async function getPlayerScores(req) {
     };
 }
 
+async function getStats() {
+    const scores = await allScores();
+
+    const totalScores = scores.length;
+
+    let pointsSum = 0;
+    let highestScore = null;
+    const gamesCount = {};
+
+    for (const score of scores) {
+        pointsSum += score.points;
+
+        if (!highestScore || score.points > highestScore.points) {
+            highestScore = {
+                playerName: score.playerName,
+                points: score.points,
+                game: score.game,
+            };
+        }
+
+        gamesCount[score.game] = (gamesCount[score.game] || 0) + 1;
+    }
+
+    let mostPopularGame = null;
+    let mostPopularGameCount = 0;
+    for (const game in gamesCount) {
+        if (gamesCount[game] > mostPopularGameCount) {
+            mostPopularGame = game;
+            mostPopularGameCount = gamesCount[game];
+        }
+    }
+
+    const averageScore = totalScores ? pointsSum / totalScores : 0;
+
+    return {
+        totalScores,
+        averageScore,
+        mostPopularGame,
+        highestScore,
+    };
+}
+
 export {
     createNewScore,
     getPlayerScores,
     tenTopGamePlayers,
     tenTopGlobalPlayers,
+    getStats,
 };
