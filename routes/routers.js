@@ -12,10 +12,9 @@ import {
 const leaderboardRoute = express.Router();
 const playersRoute = express.Router();
 const statsRoute = express.Router();
-const gameRoute = express.Router();
 const gamesRoute = express.Router();
 
-gameRoute.post("/scores", middleSchema(scoreSchema), async (req, res) => {
+gamesRoute.post("/scores", middleSchema(scoreSchema), async (req, res) => {
     try {
         const newDate = await createNewScore(req, res);
         res.status(200).json({ success: true, data: newDate });
@@ -70,4 +69,4 @@ gamesRoute.get("/", async (req, res) => {
     }
 });
 
-export { gameRoute, leaderboardRoute, playersRoute, statsRoute, gamesRoute };
+export {  leaderboardRoute, playersRoute, statsRoute, gamesRoute };

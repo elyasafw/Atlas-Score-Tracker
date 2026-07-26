@@ -7,10 +7,9 @@ const PORT = process.env.PORT;
 const app = express();
 app.use(express.json());
 
-app.use("/game", routers.gameRoute);
+app.use("/games", routers.gamesRoute);
 app.use("/leaderboard", routers.leaderboardRoute);
 app.use("/player", routers.playersRoute);
 app.use("/stats", routers.statsRoute);
-app.use("/games", routers.gamesRoute);
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT} ...`));
