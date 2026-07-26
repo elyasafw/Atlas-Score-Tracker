@@ -36,4 +36,15 @@ function allScores() {
     return collection.find().toArray();
 }
 
-export { createScore, playerScores, TopGamePlayers, TopGlobalPlayers, allScores };
+function listGames() {
+    return collection.distinct("game");
+}
+
+export {
+    createScore,
+    playerScores,
+    TopGamePlayers,
+    TopGlobalPlayers,
+    allScores,
+    listGames,
+};

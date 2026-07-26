@@ -6,12 +6,14 @@ import {
     tenTopGamePlayers,
     tenTopGlobalPlayers,
     getStats,
+    getGames,
 } from "../models/controller.js";
 
 const leaderboardRoute = express.Router();
 const playersRoute = express.Router();
 const statsRoute = express.Router();
 const gameRoute = express.Router();
+const gamesRoute = express.Router();
 
 gameRoute.post("/scores", middleSchema(scoreSchema), async (req, res) => {
     try {
@@ -59,4 +61,13 @@ statsRoute.get("/", async (req, res) => {
     }
 });
 
-export { gameRoute, leaderboardRoute, playersRoute, statsRoute };
+gamesRoute.get("/", async (req, res) => {
+    try {
+        const games = await getGames();
+        res.status(200).json({ success: true, data: games });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error });
+    }
+});
+
+export { gameRoute, leaderboardRoute, playersRoute, statsRoute, gamesRoute };

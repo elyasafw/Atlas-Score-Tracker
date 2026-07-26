@@ -4,6 +4,7 @@ import {
     TopGamePlayers,
     TopGlobalPlayers,
     allScores,
+    listGames,
 } from "./dbService.js";
 
 async function createNewScore(req, res) {
@@ -89,10 +90,15 @@ async function getStats() {
     };
 }
 
+async function getGames() {
+    return await listGames();
+}
+
 export {
     createNewScore,
     getPlayerScores,
     tenTopGamePlayers,
     tenTopGlobalPlayers,
     getStats,
+    getGames,
 };
